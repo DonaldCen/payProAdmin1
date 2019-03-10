@@ -96,5 +96,9 @@ module.exports = {
   plugins: [
     // Ignore all locale files of moment.js
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  ]
+  ],
+  devServer: {
+    host: '0.0.0.0',
+    disableHostCheck: true
+  }
 }

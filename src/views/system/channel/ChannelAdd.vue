@@ -54,7 +54,7 @@
       <a-form-item label='结算类型' v-bind="formItemLayout">
         <a-radio-group
           v-model="channel.settlementType"
-          v-decorator="['status',{rules: [{ required: true, message: '请选择类型'}]}]">
+          v-decorator="['settlementType',{rules: [{ required: true, message: '请选择类型'}]}]">
           <a-radio value="0">D0</a-radio>
           <a-radio value="1">T+0</a-radio>
           <a-radio value="2">T+1</a-radio>
@@ -71,7 +71,7 @@
 </template>
 <script>
 const formItemLayout = {
-  labelCol: {span: 3},
+  labelCol: {span: 5},
   wrapperCol: {span: 18}
 }
 export default {

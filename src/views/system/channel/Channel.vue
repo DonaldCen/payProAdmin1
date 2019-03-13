@@ -74,24 +74,24 @@
       </a-table>
     </div>
     <!-- 信息查看 -->
-    <user-info
+    <channel-info
       :userInfoData="channelInfo.data"
       :userInfoVisiable="channelInfo.visiable"
       @close="handleUserInfoClose">
-    </user-info>
+    </channel-info>
     <!-- 新增通道 -->
-    <user-add
+    <channel-add
       @close="handleUserAddClose"
       @success="handleUserAddSuccess"
-      :userAddVisiable="userAdd.visiable">
-    </user-add>
+      :userAddVisiable="channelAdd.visiable">
+    </channel-add>
     <!-- 修改用户 -->
-    <user-edit
-      ref="userEdit"
+    <channel-edit
+      ref="channelEdit"
       @close="handleUserEditClose"
       @success="handleUserEditSuccess"
-      :userEditVisiable="userEdit.visiable">
-    </user-edit>
+      :userEditVisiable="channelEdit.visiable">
+    </channel-edit>
   </a-card>
 </template>
 
@@ -112,10 +112,10 @@ export default {
         visiable: false,
         data: {}
       },
-      userAdd: {
+      channelAdd: {
         visiable: false
       },
-      userEdit: {
+      channelEdit: {
         visiable: false
       },
       queryParams: {},
@@ -160,9 +160,6 @@ export default {
       }, {
         title: '通道成本费用',
         dataIndex: 'channelCost'
-      }, {
-        title: '通道成本利率',
-        dataIndex: 'chanelCostRate'
       }, {
         title: '结算类型',
         dataIndex: 'settlementType',
@@ -240,26 +237,26 @@ export default {
       this.channelInfo.visiable = true
     },
     add () {
-      this.userAdd.visiable = true
+      this.channelAdd.visiable = true
     },
     handleUserAddClose () {
-      this.userAdd.visiable = false
+      this.channelAdd.visiable = false
     },
     handleUserAddSuccess () {
-      this.userAdd.visiable = false
-      this.$message.success('新增用户成功，初始密码为1234qwer')
+      this.channelAdd.visiable = false
+      this.$message.success('新增通道成功！')
       this.search()
     },
     edit (record) {
-      this.$refs.userEdit.setFormValues(record)
-      this.userEdit.visiable = true
+      this.$refs.channelEdit.setFormValues(record)
+      this.channelEdit.visiable = true
     },
     handleUserEditClose () {
-      this.userEdit.visiable = false
+      this.channelEdit.visiable = false
     },
     handleUserEditSuccess () {
-      this.userEdit.visiable = false
-      this.$message.success('修改用户成功')
+      this.channelEdit.visiable = false
+      this.$message.success('修改通道成功')
       this.search()
     },
     handleUserInfoClose () {
@@ -412,6 +409,7 @@ export default {
         ...params
       }).then((r) => {
         let data = r.data
+        console.log(data)
         const pagination = { ...this.pagination }
         pagination.total = data.total
         this.dataSource = data.rows
